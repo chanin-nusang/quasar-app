@@ -12,7 +12,7 @@
         />
       </q-toolbar>
       <div class="q-px-lg q-pt-xl q-mb-md">
-        <div class="text-h3">Todo</div>
+        <div class="text-h3">Checklist</div>
         <div class="text-subtitle1">{{ todaysDate }}</div>
       </div>
       <q-img src="../statics/sunset.jpg" class="header-image absolute-top"/>
@@ -47,6 +47,17 @@
               </q-item-section>
               <q-item-section>
                 Help
+              </q-item-section>
+            </q-item>
+            <q-item 
+            to="/about"
+            exact
+            clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="people" />
+              </q-item-section>
+              <q-item-section>
+                About we
               </q-item-section>
             </q-item>
 
