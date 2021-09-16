@@ -36,7 +36,7 @@
 
         <q-card-actions align="right" class="text-primary">
           <q-btn flat label="Cancel" v-close-popup />
-          <q-btn flat label="Add contact" v-close-popup />
+          <q-btn flat @click="addContact" label="Add contact" v-close-popup />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -73,15 +73,22 @@
       <q-item 
       v-for="(contact, index) in contacts"
       :key="contact.name"
-      clickable
+      clickable @click="bar2 = true"
       v-ripple>
+      <q-item-section avatar>
+          <q-avatar color="primary" text-color="white">
+            {{ contact.name.charAt(0) }}
+          </q-avatar>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>{{ contact.name }}</q-item-label>
+          <q-item-label caption lines="1">{{ contact.email }}</q-item-label>
+          <q-item-label caption lines="2">{{ contact.phone }}</q-item-label>
+        </q-item-section>
         <q-item-section avatar>
           <q-btn 
           @click.stop="dial(contact.phone)"
           flat round dense color="primary" icon="call"/>
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>{{ contact.name }}</q-item-label>
         </q-item-section>
         <q-item-section side
          >
@@ -116,7 +123,7 @@ export default defineComponent({
     return {
       dialog,
       position,
-
+      bar2: ref(false),
       open (pos) {
         position.value = pos
         dialog.value = true
@@ -140,6 +147,7 @@ export default defineComponent({
   },
   methods: {
     addContact() {
+      console.log("addContact")
       this.contacts.push({
         name: this.name,
         phone: this.phone,
